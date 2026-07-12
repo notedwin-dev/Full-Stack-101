@@ -226,7 +226,6 @@ Give your repository an easy-to-remember name, such as:
 * `portfolio`
 * `my-first-website`
 
----
 
 ![Create Repository Button](../assets/diagram-6.png)
 
@@ -236,11 +235,7 @@ Scroll down and click **Create repository**.
 
 # Connect Your Project to GitHub
 
-![GitHub Repository Settings](../assets/diagram-7.png)
-
 After creating the repository, GitHub will show you a page with instructions.
-
----
 
 ![GitHub HTTPS Link](../assets/diagram-8.png)
 
@@ -257,29 +252,17 @@ and not:
 git@github.com
 ```
 
-Copy the HTTPS link.
-
----
-
 # Upload Your Project to GitHub
 
 ![Copy and Paste into Terminal](../assets/diagram-9.png)
 
-Go back to your terminal and run:
+Go back to your terminal and paste the copied command:
 
 ```bash
 git remote add origin YOUR_REPOSITORY_LINK
+git branch -b main
 git push -u origin main
 ```
-
-Example:
-
-```bash
-git remote add origin https://github.com/johndoe/html-css.git
-git push -u origin main
-```
-
----
 
 # What Do These Commands Do?
 
