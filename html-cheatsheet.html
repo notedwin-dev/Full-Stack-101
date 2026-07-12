@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Cheat Sheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0d1728;
+            --surface: #132238;
+            --surface-soft: #17293f;
+            --ink: #f5f7fb;
+            --muted: #b8c4d6;
+            --primary: #8ed4ff;
+            --primary-soft: rgba(142, 212, 255, 0.16);
+            --accent: #ffbf69;
+            --accent-soft: rgba(255, 191, 105, 0.18);
+            --border: rgba(226, 232, 240, 0.15);
+            --shadow: 0 20px 50px rgba(2, 8, 23, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: 'Manrope', 'Segoe UI', sans-serif;
+            line-height: 1.65;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(142, 212, 255, 0.10), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(255, 191, 105, 0.08), transparent 34%),
+                var(--bg);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            gap: 24px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(9, 18, 35, 0.98), rgba(27, 89, 126, 0.88));
+            color: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.16);
+            filter: blur(2px);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin: 0 0 10px;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            color: white;
+        }
+
+        .hero-text {
+            margin: 12px 0 0;
+            max-width: 700px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--ink);
+            padding-bottom: 6px;
+            border-bottom: none;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .section {
+            margin-bottom: 0;
+            padding: 22px 24px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(19, 34, 56, 0.98), rgba(12, 22, 38, 0.97));
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 60px rgba(2, 8, 23, 0.28);
+        }
+
+        .code {
+            background: #0b1220;
+            border: 1px solid rgba(142, 212, 255, 0.18);
+            color: #f8fafc;
+            padding: 14px 16px;
+            border-radius: 16px;
+            font-family: 'Cascadia Code', Consolas, monospace;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .code pre {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .code .hljs {
+            background: transparent;
+            padding: 0;
+        }
+
+        .example-shell {
+            margin-top: 12px;
+        }
+
+        .example-toolbar {
+            display: inline-flex;
+            gap: 6px;
+            margin-bottom: 10px;
+            padding: 4px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .view-btn {
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn.active {
+            background: var(--primary-soft);
+            color: var(--primary);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+
+        .code-view {
+            min-width: 0;
+        }
+
+        .render-preview {
+            display: none;
+            padding: 12px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            min-height: 120px;
+            overflow: auto;
+        }
+
+        .render-preview.active {
+            display: block;
+        }
+
+        .render-preview iframe {
+            width: 100%;
+            min-height: 300px;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+            background: #ffffff;
+            display: block;
+        }
+
+        .render-preview > * {
+            max-width: 100%;
+        }
+
+        .render-preview .tag-item,
+        .render-preview .badge {
+            display: inline-block;
+        }
+
+        .img-placeholder {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            min-height: 90px;
+            padding: 12px;
+            border: 1px dashed rgba(142, 212, 255, 0.45);
+            border-radius: 12px;
+            color: var(--muted);
+            background: rgba(142, 212, 255, 0.08);
+            font-size: 0.92rem;
+            text-align: center;
+        }
+
+        .code-view.hidden {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(90deg, var(--primary-soft), rgba(255,255,255,0.04));
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--surface-soft);
+        }
+
+        .tag-category {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0 14px;
+        }
+
+        .tag-item {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 7px 10px;
+            border-radius: 999px;
+            font-family: 'Cascadia Code', Consolas, monospace;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .simple-note {
+            margin-top: 6px;
+            color: var(--muted);
+        }
+
+        code {
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'Cascadia Code', Consolas, monospace;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 8px;
+            padding: 14px 18px;
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 16px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <p class="eyebrow">Beginner-friendly guide</p>
+            <h1>HTML Cheat Sheet</h1>
+            <p class="hero-text">A clean, simple reference for the most important HTML tags, attributes, and structure
+                concepts.</p>
+            <div class="hero-badges">
+                <span class="badge">Easy to scan</span>
+                <span class="badge">Simple examples</span>
+                <span class="badge">Perfect for beginners</span>
+            </div>
+            </div>
+
+        <div class="section">
+            <h2>HTML Document Structure</h2>
+            <p class="simple-note">This is the basic skeleton of every web page. It tells the browser where the page
+                starts and
+                where the content goes.</p>
+            <div class="code no-preview-toggle">
+                <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Your content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+        </div>
+        <div class="section">
+            <h2>HTML Attributes</h2>
+            <p class="simple-note">Attributes add extra details to tags. They help describe how an element should work
+                or look.
+            </p>
+            <p>Example: <code>href</code> tells a link where to go.</p>
+            <div class="tag-category">
+                <span class="tag-item">id</span>
+                <span class="tag-item">class</span>
+                <span class="tag-item">href</span>
+                <span class="tag-item">src</span>
+                <span class="tag-item">alt</span>
+                <span class="tag-item">title</span>
+                <span class="tag-item">target</span>
+                <span class="tag-item">type</span>
+                <span class="tag-item">value</span>
+                <span class="tag-item">placeholder</span>
+            </div>
+            <div class="code">
+                <pre>&lt;a href="https://example.com" target="_blank" title="Visit Example"&gt;Link&lt;/a&gt;
+        &lt;img src="photo.jpg" alt="Mountain view" width="300" height="200"&gt;
+        &lt;input type="text" name="username" placeholder="Enter your name" required&gt;</pre>
+            </div>
+
+            <h3>Common Attribute Examples</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>Unique identifier for an element</td>
+                        <td>&lt;div id="main"&gt;&lt;/div&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>class</td>
+                        <td>Applies one or more CSS classes</td>
+                        <td>&lt;p class="intro"&gt;&lt;/p&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>href</td>
+                        <td>Specifies the URL for a link</td>
+                        <td>&lt;a href="about.html"&gt;About&lt;/a&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>src</td>
+                        <td>Points to the source file of an image or media</td>
+                        <td>&lt;img src="logo.png" alt="Logo"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>alt</td>
+                        <td>Provides alternative text for images</td>
+                        <td>&lt;img src="cat.jpg" alt="A cat"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>placeholder</td>
+                        <td>Shows hint text in form inputs</td>
+                        <td>&lt;input type="text" placeholder="Name"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>required</td>
+                        <td>Makes a form field mandatory</td>
+                        <td>&lt;input type="email" required&gt;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        <div class="section">
+            <h2>Text Elements</h2>
+            <p class="simple-note">Use these tags to add headings, paragraphs, and emphasis to your text.</p>
+
+            <h3>Headings</h3>
+            <div class="tag-category">
+                <span class="tag-item">&lt;h1&gt;</span>
+                <span class="tag-item">&lt;h2&gt;</span>
+                <span class="tag-item">&lt;h3&gt;</span>
+                <span class="tag-item">&lt;h4&gt;</span>
+                <span class="tag-item">&lt;h5&gt;</span>
+                <span class="tag-item">&lt;h6&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;h1&gt;Level 1 Heading&lt;/h1&gt;
+&lt;h2&gt;Level 2 Heading&lt;/h2&gt;
+&lt;h3&gt;Level 3 Heading&lt;/h3&gt;</pre>
+            </div>
+
+            <h3>Paragraphs and Text Formatting</h3>
+            <div class="tag-category">
+                <span class="tag-item">&lt;p&gt;</span>
+                <span class="tag-item">&lt;br&gt;</span>
+                <span class="tag-item">&lt;hr&gt;</span>
+                <span class="tag-item">&lt;strong&gt;</span>
+                <span class="tag-item">&lt;em&gt;</span>
+                <span class="tag-item">&lt;b&gt;</span>
+                <span class="tag-item">&lt;i&gt;</span>
+                <span class="tag-item">&lt;u&gt;</span>
+                <span class="tag-item">&lt;mark&gt;</span>
+                <span class="tag-item">&lt;small&gt;</span>
+                <span class="tag-item">&lt;del&gt;</span>
+                <span class="tag-item">&lt;ins&gt;</span>
+                <span class="tag-item">&lt;sub&gt;</span>
+                <span class="tag-item">&lt;sup&gt;</span>
+                <span class="tag-item">&lt;code&gt;</span>
+                <span class="tag-item">&lt;pre&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is a &lt;strong&gt;bold&lt;/strong&gt; text and &lt;em&gt;italic&lt;/em&gt; text.&lt;/p&gt;
+&lt;p&gt;This sentence will break &lt;br&gt; onto a new line.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;mark&gt;Highlighted&lt;/mark&gt; text and &lt;code&gt;code&lt;/code&gt; example.&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O and x&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Lists</h2>
+            <p class="simple-note">Use lists when you want to show items in a clear order or group them together.</p>
+
+            <h3>Unordered List</h3>
+            <div class="tag-category">
+                <span class="tag-item">&lt;ul&gt;</span>
+                <span class="tag-item">&lt;li&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            </div>
+
+            <h3>Ordered List</h3>
+            <div class="tag-category">
+                <span class="tag-item">&lt;ol&gt;</span>
+                <span class="tag-item">&lt;li&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;ol&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+    &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;</pre>
+            </div>
+
+            <h3>Definition List</h3>
+            <div class="tag-category">
+                <span class="tag-item">&lt;dl&gt;</span>
+                <span class="tag-item">&lt;dt&gt;</span>
+                <span class="tag-item">&lt;dd&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;dl&gt;
+    &lt;dt&gt;Term 1&lt;/dt&gt;
+    &lt;dd&gt;Definition 1&lt;/dd&gt;
+    &lt;dt&gt;Term 2&lt;/dt&gt;
+    &lt;dd&gt;Definition 2&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Links</h2>
+            <p class="simple-note">Use links to send visitors to another page, file, or section on the same page.</p>
+            <div class="tag-category">
+                <span class="tag-item">&lt;a&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;!-- External link --&gt;
+&lt;a href="https://www.example.com"&gt;Visit Example&lt;/a&gt;
+
+&lt;!-- Open in new tab --&gt;
+&lt;a href="https://www.example.com" target="_blank" rel="noopener noreferrer"&gt;Open in New Tab&lt;/a&gt;
+
+&lt;!-- Email link --&gt;
+&lt;a href="mailto:contact@example.com"&gt;Send Email&lt;/a&gt;
+
+&lt;!-- Phone link --&gt;
+&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;
+
+&lt;!-- Internal page link --&gt;
+&lt;a href="about.html"&gt;About Page&lt;/a&gt;
+
+&lt;!-- Link to section on same page --&gt;
+&lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Images and Media</h2>
+            <p class="simple-note">Use images, audio, and video to make your page more interesting and useful.</p>
+            <div class="tag-category">
+                <span class="tag-item">&lt;img&gt;</span>
+                <span class="tag-item">&lt;figure&gt;</span>
+                <span class="tag-item">&lt;figcaption&gt;</span>
+                <span class="tag-item">&lt;video&gt;</span>
+                <span class="tag-item">&lt;audio&gt;</span>
+                <span class="tag-item">&lt;source&gt;</span>
+                <span class="tag-item">&lt;iframe&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;!-- Basic image --&gt;
+&lt;img src="image.jpg" alt="Description of image"&gt;
+
+&lt;!-- Image with width and height --&gt;
+&lt;img src="image.jpg" alt="Description of image" width="300" height="200"&gt;
+
+&lt;!-- Figure with caption --&gt;
+&lt;figure&gt;
+    &lt;img src="image.jpg" alt="Description of image"&gt;
+    &lt;figcaption&gt;Fig.1 - Image caption text&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- Video --&gt;
+&lt;video width="320" height="240" controls&gt;
+    &lt;source src="movie.mp4" type="video/mp4"&gt;
+    &lt;source src="movie.ogg" type="video/ogg"&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;!-- Audio --&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;!-- Iframe for embedding content --&gt;
+&lt;iframe src="https://www.example.com" width="600" height="400"&gt;&lt;/iframe&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tables</h2>
+            <p class="simple-note">Use tables to show information in rows and columns, such as prices or schedules.</p>
+            <div class="tag-category">
+                <span class="tag-item">&lt;table&gt;</span>
+                <span class="tag-item">&lt;caption&gt;</span>
+                <span class="tag-item">&lt;thead&gt;</span>
+                <span class="tag-item">&lt;tbody&gt;</span>
+                <span class="tag-item">&lt;tfoot&gt;</span>
+                <span class="tag-item">&lt;tr&gt;</span>
+                <span class="tag-item">&lt;th&gt;</span>
+                <span class="tag-item">&lt;td&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;table&gt;
+    &lt;caption&gt;Monthly Savings&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Month&lt;/th&gt;
+            &lt;th&gt;Savings&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;January&lt;/td&gt;
+            &lt;td&gt;$100&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;February&lt;/td&gt;
+            &lt;td&gt;$150&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Total&lt;/td&gt;
+            &lt;td&gt;$250&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Forms</h2>
+            <p class="simple-note">Use forms when you want visitors to enter information, such as their name or email.
+            </p>
+            <div class="tag-category">
+                <span class="tag-item">&lt;form&gt;</span>
+                <span class="tag-item">&lt;label&gt;</span>
+                <span class="tag-item">&lt;input&gt;</span>
+                <span class="tag-item">&lt;textarea&gt;</span>
+                <span class="tag-item">&lt;select&gt;</span>
+                <span class="tag-item">&lt;option&gt;</span>
+                <span class="tag-item">&lt;button&gt;</span>
+                <span class="tag-item">&lt;fieldset&gt;</span>
+                <span class="tag-item">&lt;legend&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;form action="/submit" method="post"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Personal Information&lt;/legend&gt;
+        
+        &lt;div&gt;
+            &lt;label for="name"&gt;Name:&lt;/label&gt;
+            &lt;input type="text" id="name" name="name" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="password"&gt;Password:&lt;/label&gt;
+            &lt;input type="password" id="password" name="password" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="message"&gt;Message:&lt;/label&gt;
+            &lt;textarea id="message" name="message" rows="4" cols="50"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="country"&gt;Country:&lt;/label&gt;
+            &lt;select id="country" name="country"&gt;
+                &lt;option value="usa"&gt;United States&lt;/option&gt;
+                &lt;option value="canada"&gt;Canada&lt;/option&gt;
+                &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;p&gt;Gender:&lt;/p&gt;
+            &lt;input type="radio" id="male" name="gender" value="male"&gt;
+            &lt;label for="male"&gt;Male&lt;/label&gt;&lt;br&gt;
+            
+            &lt;input type="radio" id="female" name="gender" value="female"&gt;
+            &lt;label for="female"&gt;Female&lt;/label&gt;&lt;br&gt;
+            
+            &lt;input type="radio" id="other" name="gender" value="other"&gt;
+            &lt;label for="other"&gt;Other&lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;input type="checkbox" id="subscribe" name="subscribe" value="yes"&gt;
+            &lt;label for="subscribe"&gt;Subscribe to newsletter&lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;button type="reset"&gt;Reset&lt;/button&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+            </div>
+
+            <h3>Common Input Types</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>text</td>
+                        <td>Single-line text input</td>
+                        <td>&lt;input type="text" name="username"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td>Password field (characters are masked)</td>
+                        <td>&lt;input type="password" name="pwd"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>Email input with validation</td>
+                        <td>&lt;input type="email" name="email"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>number</td>
+                        <td>Numeric input</td>
+                        <td>&lt;input type="number" name="quantity" min="1" max="5"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>checkbox</td>
+                        <td>Checkbox for multiple selections</td>
+                        <td>&lt;input type="checkbox" name="vehicle" value="Bike"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>radio</td>
+                        <td>Radio button for single selection</td>
+                        <td>&lt;input type="radio" name="gender" value="female"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>date</td>
+                        <td>Date picker</td>
+                        <td>&lt;input type="date" name="birthday"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>file</td>
+                        <td>File upload field</td>
+                        <td>&lt;input type="file" name="myFile"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>submit</td>
+                        <td>Submit button</td>
+                        <td>&lt;input type="submit" value="Submit"&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>reset</td>
+                        <td>Reset button</td>
+                        <td>&lt;input type="reset" value="Reset"&gt;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Semantic HTML5 Elements</h2>
+            <p class="simple-note">These tags help give your page a clear structure. They make your code easier to read
+                and help
+                screen readers understand the page.</p>
+            <div class="tag-category">
+                <span class="tag-item">&lt;header&gt;</span>
+                <span class="tag-item">&lt;nav&gt;</span>
+                <span class="tag-item">&lt;main&gt;</span>
+                <span class="tag-item">&lt;section&gt;</span>
+                <span class="tag-item">&lt;article&gt;</span>
+                <span class="tag-item">&lt;aside&gt;</span>
+                <span class="tag-item">&lt;footer&gt;</span>
+                <span class="tag-item">&lt;figure&gt;</span>
+                <span class="tag-item">&lt;figcaption&gt;</span>
+            </div>
+            <div class="code">
+                <pre>&lt;header&gt;
+    &lt;h1&gt;Website Title&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Section Title&lt;/h2&gt;
+        &lt;p&gt;Section content...&lt;/p&gt;
+        
+        &lt;article&gt;
+            &lt;h3&gt;Article Title&lt;/h3&gt;
+            &lt;p&gt;Article content...&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+    
+    &lt;aside&gt;
+        &lt;h3&gt;Related Links&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 My Website&lt;/p&gt;
+&lt;/footer&gt;</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Special Characters and Entities</h2>
+            <p class="simple-note">Use these when you need symbols like &lt; or &amp; that are special in HTML.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>Entity</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;</td>
+                        <td>&amp;lt;</td>
+                        <td>Less than</td>
+                    </tr>
+                    <tr>
+                        <td>&gt;</td>
+                        <td>&amp;gt;</td>
+                        <td>Greater than</td>
+                    </tr>
+                    <tr>
+                        <td>&amp;</td>
+                        <td>&amp;amp;</td>
+                        <td>Ampersand</td>
+                    </tr>
+                    <tr>
+                        <td>&quot;</td>
+                        <td>&amp;quot;</td>
+                        <td>Double quotation mark</td>
+                    </tr>
+                    <tr>
+                        <td>&apos;</td>
+                        <td>&amp;apos;</td>
+                        <td>Single quotation mark (apostrophe)</td>
+                    </tr>
+                    <tr>
+                        <td>©</td>
+                        <td>&amp;copy;</td>
+                        <td>Copyright symbol</td>
+                    </tr>
+                    <tr>
+                        <td>®</td>
+                        <td>&amp;reg;</td>
+                        <td>Registered trademark</td>
+                    </tr>
+                    <tr>
+                        <td>™</td>
+                        <td>&amp;trade;</td>
+                        <td>Trademark</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&amp;nbsp;</td>
+                        <td>Non-breaking space</td>
+                    </tr>
+                    <tr>
+                        <td>€</td>
+                        <td>&amp;euro;</td>
+                        <td>Euro</td>
+                    </tr>
+                    <tr>
+                        <td>£</td>
+                        <td>&amp;pound;</td>
+                        <td>Pound</td>
+                    </tr>
+                    <tr>
+                        <td>¥</td>
+                        <td>&amp;yen;</td>
+                        <td>Yen</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Full Stack Web Development Course | <a href="https://notedwin.dev">Edwin Ng</a></p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.code:not(.no-preview-toggle)').forEach((codeBlock) => {
+                const shell = document.createElement('div');
+                shell.className = 'example-shell';
+
+                const preview = document.createElement('div');
+                preview.className = 'render-preview';
+
+                const toolbar = document.createElement('div');
+                toolbar.className = 'example-toolbar';
+                toolbar.innerHTML = `
+                        <button class="view-btn active" data-view="code">Code</button>
+                        <button class="view-btn" data-view="preview">Preview</button>
+                    `;
+
+                const codeView = codeBlock;
+                const codeContent = codeView.textContent.trim();
+                const previewRoot = document.createElement('div');
+                previewRoot.innerHTML = codeContent;
+
+                previewRoot.querySelectorAll('img').forEach((img) => {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'img-placeholder';
+                    placeholder.textContent = 'Image placeholder';
+                    img.replaceWith(placeholder);
+                });
+
+                const previewMarkup = previewRoot.innerHTML;
+                const previewFrame = document.createElement('iframe');
+                previewFrame.title = 'HTML render preview';
+                previewFrame.srcdoc = `<!doctype html>
+                            <html>
+                            <head>
+                            <meta charset="utf-8">
+                            <style>
+                              :root { color-scheme: light; }
+                              * { box-sizing: border-box; }
+                              body {
+                                margin: 0;
+                                padding: 16px;
+                                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                                line-height: 1.5;
+                                color: #0f172a;
+                                background: #ffffff;
+                              }
+                              img { max-width: 100%; height: auto; display: block; }
+                              .img-placeholder {
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                min-width: 140px;
+                                min-height: 90px;
+                                padding: 12px;
+                                border: 1px dashed rgba(37, 99, 235, 0.45);
+                                border-radius: 12px;
+                                color: #64748b;
+                                background: rgba(37, 99, 235, 0.08);
+                                font-size: 0.92rem;
+                                text-align: center;
+                              }
+                              .tag-item, .badge {
+                                display: inline-block;
+                              }
+                            </style>
+                            </head>
+                            <body>${previewMarkup}</body>
+                            </html>`;
+                preview.appendChild(previewFrame);
+
+                codeBlock.classList.add('code-view');
+                codeBlock.parentNode.insertBefore(shell, codeBlock);
+                shell.appendChild(toolbar);
+                shell.appendChild(codeBlock);
+                shell.appendChild(preview);
+
+                toolbar.querySelectorAll('.view-btn').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        toolbar.querySelectorAll('.view-btn').forEach((b) => b.classList.remove('active'));
+                        btn.classList.add('active');
+
+                        if (btn.dataset.view === 'preview') {
+                            codeBlock.classList.add('hidden');
+                            preview.classList.add('active');
+                        } else {
+                            codeBlock.classList.remove('hidden');
+                            preview.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('pre').forEach((pre) => {
+                const code = document.createElement('code');
+                code.className = 'language-html';
+                code.textContent = pre.textContent;
+                pre.innerHTML = '';
+                pre.appendChild(code);
+            });
+            hljs.highlightAll();
+        });
+    </script>
+</body>
+
+</html>

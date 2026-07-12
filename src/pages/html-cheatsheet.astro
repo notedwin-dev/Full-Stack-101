@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HtmlCheatsheetPage from '../components/HtmlCheatsheetPage';
+---
+
+<BaseLayout
+  title="HTML Cheat Sheet"
+  description="A beginner-friendly HTML reference rendered with Astro and TSX."
+  activePage="html"
+>
+  <link slot="head" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <HtmlCheatsheetPage client:load />
+</BaseLayout>

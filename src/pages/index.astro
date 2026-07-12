@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Full Stack 101"
+  description="A growing collection of beginner-friendly full stack guides."
+  activePage="home"
+>
+  <section class="grid">
+    <div class="card">
+      <h1>Full Stack 101</h1>
+      <p class="lead">
+        A small documentation hub for beginner-friendly full stack guides. Start with Git setup or the HTML cheat
+        sheet, and add more guides here as the collection grows.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Guides</h2>
+      <div class="button-row">
+        <a class="button primary" href="/html-cheatsheet">Open HTML Cheat Sheet</a>
+        <a class="button" href="/git-setup">Open Git Setup Guide</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

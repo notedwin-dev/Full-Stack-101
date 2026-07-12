@@ -1,0 +1,601 @@
+---
+const {
+  title = 'Full Stack 101',
+  description = 'Beginner-friendly guides for Git and HTML.',
+  activePage = ''
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --bg: #0b1220;
+        --surface: #111b2f;
+        --surface-2: #16233b;
+        --text: #f4f7fb;
+        --muted: #b5c3d8;
+        --primary: #8ed4ff;
+        --primary-soft: rgba(142, 212, 255, 0.16);
+        --accent: #ffbf69;
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: 0 24px 60px rgba(2, 8, 23, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background:
+          radial-gradient(circle at top left, rgba(142, 212, 255, 0.12), transparent 26%),
+          radial-gradient(circle at bottom right, rgba(255, 191, 105, 0.1), transparent 30%),
+          var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Manrope', 'Segoe UI', sans-serif;
+        line-height: 1.65;
+        color: var(--text);
+        background: transparent;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-shell {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 40px;
+      }
+
+      .docs-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 16px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: rgba(17, 27, 47, 0.82);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand strong {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .menu-button span {
+        display: inline-block;
+        width: 18px;
+        height: 2px;
+        background: currentColor;
+        position: relative;
+        border-radius: 999px;
+      }
+
+      .menu-button span::before,
+      .menu-button span::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 999px;
+      }
+
+      .menu-button span::before {
+        top: -6px;
+      }
+
+      .menu-button span::after {
+        top: 6px;
+      }
+
+      .sidebar {
+        display: none;
+        gap: 16px;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: rgba(17, 27, 47, 0.82);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow);
+      }
+
+      .sidebar h2 {
+        margin: 0;
+        font-size: 1rem;
+        font-family: 'Manrope', 'Segoe UI', sans-serif;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .sidebar nav {
+        display: grid;
+        gap: 8px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .sidebar a:hover {
+        border-color: rgba(142, 212, 255, 0.4);
+        background: var(--primary-soft);
+      }
+
+      .sidebar a.active {
+        border-color: rgba(142, 212, 255, 0.5);
+        background: rgba(142, 212, 255, 0.12);
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--text);
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .nav a:hover {
+        border-color: rgba(142, 212, 255, 0.4);
+        background: var(--primary-soft);
+      }
+
+      .page-card {
+        min-width: 0;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(17, 27, 47, 0.97), rgba(11, 18, 32, 0.97));
+        box-shadow: var(--shadow);
+        overflow-x: clip;
+      }
+
+      .page-card h1,
+      .page-card h2,
+      .page-card h3 {
+        font-family: 'Playfair Display', serif;
+        line-height: 1.15;
+      }
+
+      .page-card h1 {
+        margin-top: 0;
+      }
+
+      .page-card img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .page-card table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      .page-card pre {
+        max-width: 100%;
+        white-space: pre;
+      }
+
+      .lead {
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .card {
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .page-card :not(pre) > code,
+      .sidebar :not(pre) > code {
+        font-family: 'Cascadia Code', Consolas, monospace;
+        padding: 2px 6px;
+        border-radius: 6px;
+        background: rgb(52, 52, 52);
+      }
+
+      .page-card pre code,
+      .sidebar pre code {
+        font: inherit;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .page-card pre,
+      .sidebar pre {
+        font-family: 'Cascadia Code', Consolas, monospace;
+      }
+
+      pre {
+        overflow-x: auto;
+        padding: 16px;
+        border-radius: 16px;
+        background: #0b1220;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .button.primary {
+        background: var(--primary-soft);
+        color: var(--text);
+        border-color: rgba(142, 212, 255, 0.35);
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      @media (max-width: 720px) {
+        .site-shell {
+          width: min(1100px, calc(100% - 16px));
+          padding-top: 10px;
+        }
+
+        .docs-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: auto;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          max-height: 70vh;
+          z-index: 30;
+          overflow: auto;
+          gap: 8px;
+          padding: 8px 14px 20px;
+          border-radius: 22px 22px 0 0;
+          background:
+            linear-gradient(180deg, rgba(23, 36, 61, 0.98), rgba(11, 18, 32, 0.98)),
+            rgba(17, 27, 47, 0.82);
+          box-shadow: 0 -16px 44px rgba(2, 8, 23, 0.44);
+          transform: translateY(100%);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.22s ease, transform 0.22s ease;
+          overscroll-behavior: contain;
+        }
+
+        .sidebar.is-dragging {
+          transition: none;
+        }
+
+        .sidebar-grab {
+          display: flex;
+          justify-content: center;
+          padding: 6px 0 2px;
+          cursor: grab;
+          touch-action: none;
+        }
+
+        .sidebar-grab span {
+          display: block;
+          width: 40px;
+          height: 4px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.22);
+        }
+
+        .sidebar-grab:active {
+          cursor: grabbing;
+        }
+
+        .sidebar h2 {
+          margin: 0;
+          padding: 4px 8px;
+          width: fit-content;
+          border-radius: 999px;
+          font-size: 0.68rem;
+          letter-spacing: 0.12em;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar nav {
+          gap: 6px;
+        }
+
+        .sidebar.is-open {
+          display: grid;
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .sidebar-backdrop {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 20;
+          background: rgba(2, 8, 23, 0.6);
+        }
+
+        .sidebar-backdrop.is-open {
+          display: block;
+        }
+
+        .site-header {
+          align-items: center;
+        }
+
+        .page-card {
+          padding: 16px;
+        }
+
+        .sidebar a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          padding: 8px 10px;
+          font-size: 0.92rem;
+          border-radius: 12px;
+          border-color: rgba(255, 255, 255, 0.06);
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .sidebar a::after {
+          content: '';
+          width: 6px;
+          height: 6px;
+          border-radius: 999px;
+          background: rgba(142, 212, 255, 0.5);
+        }
+
+        .sidebar a.active {
+          background: rgba(142, 212, 255, 0.14);
+          border-color: rgba(142, 212, 255, 0.42);
+        }
+
+        .sidebar a.active::after {
+          background: var(--primary);
+          box-shadow: 0 0 0 3px rgba(142, 212, 255, 0.12);
+        }
+
+        .desktop-nav {
+          display: none;
+        }
+      }
+
+      @media (min-width: 721px) {
+        .docs-shell {
+          grid-template-columns: 260px minmax(0, 1fr);
+          gap: 18px;
+        }
+
+        .menu-button {
+          display: none;
+        }
+
+        .sidebar {
+          display: grid;
+          position: sticky;
+          top: 24px;
+          opacity: 1;
+          pointer-events: auto;
+          transform: none;
+        }
+
+        .sidebar-backdrop {
+          display: none !important;
+        }
+
+        .page-card {
+          padding: 24px;
+        }
+      }
+    </style>
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="brand">
+          <strong>Full Stack 101</strong>
+          <span>HTML cheat sheet and Git setup guides</span>
+        </div>
+        <button
+          class="menu-button"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="docs-sidebar"
+          data-sidebar-toggle
+        >
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav desktop-nav" aria-label="Primary">
+          <a href="/">Home</a>
+          <a href="/html-cheatsheet">HTML Cheat Sheet</a>
+          <a href="/git-setup">Git Setup</a>
+        </nav>
+      </header>
+      <div class="sidebar-backdrop" data-sidebar-backdrop></div>
+      <div class="docs-shell">
+        <aside class="sidebar" id="docs-sidebar" aria-label="Documentation sections">
+          <div class="sidebar-grab" data-sidebar-grab aria-hidden="true"><span></span></div>
+          <div>
+            <h2>Guides</h2>
+          </div>
+          <nav>
+            <a class={activePage === 'home' ? 'active' : ''} href="/">Home</a>
+            <a class={activePage === 'html' ? 'active' : ''} href="/html-cheatsheet">HTML Cheat Sheet</a>
+            <a class={activePage === 'git' ? 'active' : ''} href="/git-setup">Git Setup</a>
+          </nav>
+        </aside>
+        <main class="page-card">
+          <slot />
+        </main>
+      </div>
+    </div>
+    <script is:inline>
+      const sidebar = document.querySelector('#docs-sidebar');
+      const backdrop = document.querySelector('[data-sidebar-backdrop]');
+      const menuButton = document.querySelector('[data-sidebar-toggle]');
+      const grab = document.querySelector('[data-sidebar-grab]');
+
+      const setOpen = (isOpen) => {
+        sidebar?.classList.toggle('is-open', isOpen);
+        backdrop?.classList.toggle('is-open', isOpen);
+        menuButton?.setAttribute('aria-expanded', String(isOpen));
+        if (!isOpen && sidebar) {
+          sidebar.classList.remove('is-dragging');
+          sidebar.style.transform = '';
+        }
+      };
+
+      const toggleDocsSidebar = () => {
+        const isOpen = sidebar?.classList.contains('is-open') ?? false;
+        setOpen(!isOpen);
+      };
+
+      menuButton?.addEventListener('click', toggleDocsSidebar);
+      backdrop?.addEventListener('click', () => setOpen(false));
+
+      sidebar?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+
+      if (grab && sidebar) {
+        let startY = 0;
+        let dragging = false;
+        let height = 0;
+
+        const onDown = (e) => {
+          if (!sidebar.classList.contains('is-open')) return;
+          dragging = true;
+          startY = (e.touches ? e.touches[0].clientY : e.clientY);
+          height = sidebar.offsetHeight;
+          sidebar.classList.add('is-dragging');
+          if (e.cancelable) e.preventDefault();
+        };
+
+        const onMove = (e) => {
+          if (!dragging) return;
+          const y = (e.touches ? e.touches[0].clientY : e.clientY);
+          const delta = Math.max(0, y - startY);
+          sidebar.style.transform = `translateY(${delta}px)`;
+          if (e.cancelable) e.preventDefault();
+        };
+
+        const onUp = (e) => {
+          if (!dragging) return;
+          dragging = false;
+          sidebar.classList.remove('is-dragging');
+          const y = (e.changedTouches ? e.changedTouches[0].clientY : e.clientY);
+          const delta = y - startY;
+          sidebar.style.transform = '';
+          if (delta > height * 0.35 || delta > 80) {
+            setOpen(false);
+          }
+        };
+
+        grab.addEventListener('touchstart', onDown, { passive: false });
+        grab.addEventListener('touchmove', onMove, { passive: false });
+        grab.addEventListener('touchend', onUp);
+        grab.addEventListener('mousedown', onDown);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+      }
+    </script>
+  </body>
+</html>
