@@ -40,7 +40,7 @@ git config user.email "your-github-email"
 
 This step helps Git identify who committed the code. If you already set these values on your computer before, you may not need to do it again for every project.
 
-![Right Click In Your directory](/assets/diagram-1.png)
+![Right Click In Your directory](../assets/diagram-1.png)
 
 In your folder that you saved your code, right click to open in terminal
 
@@ -51,7 +51,7 @@ git add .
 git commit -m "First Commit"
 ```
 
-![Select Paste Anyway](/assets/diagram-2.png)
+![Select Paste Anyway](../assets/diagram-2.png)
 
 Select Paste anyway and press Enter so that the final command is also executed.
 
@@ -64,42 +64,42 @@ Select Paste anyway and press Enter so that the final command is also executed.
 
 After this, your code is being tracked locally on your computer. The next step, if you want to put it on GitHub, is usually to connect this folder to a GitHub repository and push the commits there.
 
-![Successful Git Commit](/assets/diagram-3.png)
+![Successful Git Commit](../assets/diagram-3.png)
 
 If you see this, it means it has been committed into Git.
 
 ## Create your GitHub repository
 
-![GitHub Homepage](/assets/diagram-4.png)
+![GitHub Homepage](../assets/diagram-4.png)
 
 Go to [GitHub](https://github.com) while you are logged in. Then click the Plus button and choose New Repository.
 
-![Name GitHub repository](/assets/diagram-5.png)
+![Name GitHub repository](../assets/diagram-5.png)
 
 Name your project something easy to recognize, like `html-css` or another simple project name.
 
-![Create repository button](/assets/diagram-6.png)
+![Create repository button](../assets/diagram-6.png)
 
 Scroll to the bottom and click Create repository.
 
 ## Connect the folder to GitHub
 
-![GitHub repository settings](/assets/diagram-7.png)
+![GitHub repository settings](../assets/diagram-7.png)
 
 Copy the HTTPS link from GitHub so you can paste it into your terminal in the next step.
 
-![GitHub HTTPS Link](/assets/diagram-8.png)
+![GitHub HTTPS Link](../assets/diagram-8.png)
 
 Now go back to GitHub. Make sure HTTPS is selected, and that the link starts with `https://` instead of `git@github.com`.
 
-![Copy and paste into terminal](/assets/diagram-9.png)
+![Copy and paste into terminal](../assets/diagram-9.png)
 
 Click the copy button and paste it into your terminal.
 
-![Result](/assets/diagram-10.png)
+![Result](../assets/diagram-10.png)
 
 If this is what you see, then congrats, it means that you have successfully saved your folder into GitHub.
 
-![GitHub Repository Page](/assets/diagram-11.png)
+![GitHub Repository Page](../assets/diagram-11.png)
 
 When you go back to GitHub and refresh the webpage, you should now see your code inside the repository.
