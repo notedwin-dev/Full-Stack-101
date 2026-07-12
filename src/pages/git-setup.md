@@ -1,105 +1,325 @@
----
-layout: ../layouts/BaseLayout.astro
-title: Git Installation and Setup Guide
-description: A beginner-friendly guide to Git, GitHub, and your first commit.
-activePage: git
----
-
 # Git Installation and Setup Guide
-In this document, you will learn how to push your code into GitHub for storing your code remotely and learn the basics of version control.
 
-## Prerequisites
-- You must have a laptop / PC.
-- Git must be installed on your laptop / PC because it is a computer program that helps track your files.
+In this guide, you will learn how to save your code on GitHub and understand the basics of version control.
 
-## What is Version Control and why do we need it?
-Version control is a system that keeps track of changes to your files over time. A simple way to think about it is like a save history for your project. If you change something and it breaks, you can go back to an earlier version instead of starting over. It is like having an undo button that can remember many past changes.
+Think of GitHub as an online backup for your code. Even if something happens to your computer, your code will still be safely stored online.
 
-Git was created by Linus Torvalds.
+---
 
-We use version control because it helps you:
+# Prerequisites
 
-- save your work safely
-- see what changed and when it changed
-- undo mistakes without losing everything
-- work with other people on the same project
-- store your code on GitHub so it is backed up online
+Before starting, make sure you have:
 
-Git and GitHub are not the same thing. Git is the tool that tracks your changes on your computer. GitHub is a website that stores your Git projects online so you can share them and access them from anywhere.
+* A laptop or desktop computer.
+* Git installed on your computer.
 
-Link to Installing Git:
+Git is a program that keeps track of changes to your files, similar to the **Save** feature in a game or document editor.
+
+Install Git here:
+
 https://git-scm.com/install/windows
 
-## Before you make your first commit
+---
 
-Git needs to know who is making the commit. Set your name and email address first:
+# What is Version Control and Why Do We Need It?
+
+Version control is a system that keeps track of changes to your files over time.
+
+A simple way to think about it is this:
+
+> It is like having a save history for your project.
+
+If you make a mistake or accidentally break your code, you can go back to an earlier version instead of starting over.
+
+Git was created by Linus Torvalds, the creator of Linux.
+
+We use version control because it helps us:
+
+* save our work safely
+* see what changed and when it changed
+* undo mistakes without losing everything
+* work with other people on the same project
+* store our code online as a backup
+
+---
+
+# Git and GitHub Are Different Things
+
+Many beginners think Git and GitHub are the same thing, but they are not.
+
+### Git
+
+Git is a program installed on your computer that keeps track of your changes.
+
+### GitHub
+
+GitHub is a website that stores your Git projects online.
+
+You use:
+
+**Git → on your computer**
+
+**GitHub → on the internet**
+
+---
+
+# Before You Make Your First Commit
+
+In Git, a **commit** is like pressing the **Save Game** button.
+
+A commit creates a saved copy of your project at a specific point in time.
+
+Think about playing a video game.
+
+You would not play for five hours without saving your progress. If your character dies or your game crashes, you could lose everything.
+
+Git commits work the same way.
+
+They create checkpoints so you can always return to an earlier version if something goes wrong.
+
+---
+
+# Tell Git Who You Are
+
+Before making your first commit, Git needs to know your name and email address.
+
+Run these commands:
+
+```bash
+git config --global user.name "your-github-username"
+git config --global user.email "your-github-email"
 ```
-git config user.name "your-github-username"
-git config user.email "your-github-email"
+
+Example:
+
+```bash
+git config --global user.name "notedwin-dev"
+git config --global user.email "notedwin.music@gmail.com"
 ```
 
-This step helps Git identify who committed the code. If you already set these values on your computer before, you may not need to do it again for every project.
+This information is attached to every commit you make so Git knows who created the changes.
 
-![Right Click In Your directory](../assets/diagram-1.png)
+You only need to do this once on your computer. You usually do not need to run these commands again.
 
-In your folder that you saved your code, right click to open in terminal
+---
 
-Paste this command:
-```
+![Right Click In Your Directory](../assets/diagram-1.png)
+
+Go to the folder where you saved your project.
+
+Right-click inside the folder and select **Open in Terminal**.
+
+---
+
+# Create Your First Git Repository
+
+Paste these commands:
+
+```bash
 git init -b main
 git add .
 git commit -m "First Commit"
 ```
 
+---
+
 ![Select Paste Anyway](../assets/diagram-2.png)
 
-Select Paste anyway and press Enter so that the final command is also executed.
+If Windows asks you to confirm, click **Paste Anyway** and press **Enter**.
 
-## What each command does?
-`git init -b main` creates a new Git repository in this folder and names the first branch `main`. This tells Git, "start tracking this folder." The `-b main` part makes sure the project starts on the `main` branch instead of an older default like `master`.
+---
 
-`git add .` stages all the current files in the folder. "Staging" means you are telling Git which changes you want to include in your next save. The dot means "everything in this folder."
+# What Do These Commands Do?
 
-`git commit -m "First Commit"` saves a snapshot of the staged files. The message in quotes is a short note that explains what this save is for. You can later make more commits as you keep improving the project.
+### `git init -b main`
 
-After this, your code is being tracked locally on your computer. The next step, if you want to put it on GitHub, is usually to connect this folder to a GitHub repository and push the commits there.
+Creates a new Git repository in your folder.
+
+In simple terms, you are telling Git:
+
+> "Start tracking this project."
+
+The `-b main` part creates the first branch called `main`.
+
+---
+
+### `git add .`
+
+Prepares all your files to be saved.
+
+The dot (`.`) means:
+
+> "Include everything inside this folder."
+
+---
+
+### `git commit -m "First Commit"`
+
+Creates a saved checkpoint of your project.
+
+The message inside the quotes is a short description of what you saved.
+
+You will make many commits as your project grows.
+
+---
+
+# Understanding the Git Workflow
+
+Git works like this:
+
+```text
+Your Files
+     ↓
+git add .
+     ↓
+Staging Area
+     ↓
+git commit
+     ↓
+Local Git Repository
+     ↓
+git push
+     ↓
+GitHub
+```
+
+Think of it like this:
+
+* `git add` = preparing files to save
+* `git commit` = pressing Save Game
+* `git push` = uploading your save file to the internet
+
+---
 
 ![Successful Git Commit](../assets/diagram-3.png)
 
-If you see this, it means it has been committed into Git.
+If you see a message similar to this, it means your files have been successfully committed to Git.
 
-## Create your GitHub repository
+At this point, your project is only saved on your computer.
+
+The next step is to upload it to GitHub.
+
+---
+
+# Create Your GitHub Repository
 
 ![GitHub Homepage](../assets/diagram-4.png)
 
-Go to [GitHub](https://github.com) while you are logged in. Then click the Plus button and choose New Repository.
+Go to https://github.com and log in.
 
-![Name GitHub repository](../assets/diagram-5.png)
+Click the **+** button in the top-right corner and select **New Repository**.
 
-Name your project something easy to recognize, like `html-css` or another simple project name.
+---
 
-![Create repository button](../assets/diagram-6.png)
+![Name GitHub Repository](../assets/diagram-5.png)
 
-Scroll to the bottom and click Create repository.
+Give your repository an easy-to-remember name, such as:
 
-## Connect the folder to GitHub
+* `html-css`
+* `portfolio`
+* `my-first-website`
 
-![GitHub repository settings](../assets/diagram-7.png)
+---
 
-Copy the HTTPS link from GitHub so you can paste it into your terminal in the next step.
+![Create Repository Button](../assets/diagram-6.png)
+
+Scroll down and click **Create repository**.
+
+---
+
+# Connect Your Project to GitHub
+
+![GitHub Repository Settings](../assets/diagram-7.png)
+
+After creating the repository, GitHub will show you a page with instructions.
+
+---
 
 ![GitHub HTTPS Link](../assets/diagram-8.png)
 
-Now go back to GitHub. Make sure HTTPS is selected, and that the link starts with `https://` instead of `git@github.com`.
+Make sure **HTTPS** is selected.
 
-![Copy and paste into terminal](../assets/diagram-9.png)
+The link should start with:
+```text
+https://
+```
 
-Click the copy button and paste it into your terminal.
+and not:
+
+```text
+git@github.com
+```
+
+Copy the HTTPS link.
+
+---
+
+# Upload Your Project to GitHub
+
+![Copy and Paste into Terminal](../assets/diagram-9.png)
+
+Go back to your terminal and run:
+
+```bash
+git remote add origin YOUR_REPOSITORY_LINK
+git push -u origin main
+```
+
+Example:
+
+```bash
+git remote add origin https://github.com/johndoe/html-css.git
+git push -u origin main
+```
+
+---
+
+# What Do These Commands Do?
+
+### `git remote add origin`
+
+Connects your project folder on your computer to your GitHub repository.
+
+Think of it like telling Git:
+
+> "This is where I want to upload my code."
+
+---
+
+### `git push -u origin main`
+
+Uploads your commits from your computer to GitHub.
+
+Think of it like:
+
+> "Take my saved project and put it online."
+
+---
+
+You may be asked to sign in to GitHub in your browser.
+
+After signing in, the upload will continue automatically.
+
+---
 
 ![Result](../assets/diagram-10.png)
 
-If this is what you see, then congrats, it means that you have successfully saved your folder into GitHub.
+If you see something similar to this, congratulations!
+
+Your project has been successfully uploaded to GitHub.
+
+---
 
 ![GitHub Repository Page](../assets/diagram-11.png)
 
-When you go back to GitHub and refresh the webpage, you should now see your code inside the repository.
+Go back to GitHub and refresh the page.
+
+You should now see all of your files inside the repository.
+
+Your code is now:
+
+✅ Saved on your computer
+
+✅ Backed up online on GitHub
+
+✅ Ready to be shared with other people
