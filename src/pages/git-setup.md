@@ -1,3 +1,10 @@
+---
+layout: ../layouts/BaseLayout.astro
+title: Git Installation and Setup Guide
+description: A beginner-friendly guide to Git, GitHub, and your first commit.
+activePage: git
+---
+
 # Git Installation and Setup Guide
 
 In this guide, you will learn how to save your code on GitHub and understand the basics of version control.
